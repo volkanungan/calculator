@@ -26,7 +26,7 @@ function validateInput(input: string) {
 function validateResult(stack: number[]) {
   if (stack.length !== 1) {
     throw new Error(
-      'Invalid input: Not enough operators given to calculate the result'
+      'Invalid input: Missing operators for some of the operands'
     );
   }
 }
@@ -35,7 +35,7 @@ function doOperation(stack: number[], operator: Operator) {
   const [second, first] = [Number(stack.pop()), Number(stack.pop())];
   if (!first || !second) {
     throw new Error(
-      'Invalid input: Operands not given before operator ${curr}'
+      `Invalid input: Operands not given before operator ${operator}`
     );
   }
   stack.push(operate(first, second, operator));

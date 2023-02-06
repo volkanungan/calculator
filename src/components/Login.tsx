@@ -1,24 +1,29 @@
+import 'animate.css';
+import { useEffect } from 'react';
+import { flushSync } from 'react-dom';
+import { IoWarningOutline } from 'react-icons/io5';
+
 const CREDENTIALS = {
   username: 'Username',
   password: 'Password',
 };
 
-export default function Login({
-  setLoggedIn,
-}: {
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+type LoginProps = {
+  loggedIn: boolean | null;
+  setLoggedIn: React.Dispatch<React.SetStateAction<boolean | null>>;
+};
+
+export default function Login({ loggedIn, setLoggedIn }: LoginProps) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);
-    const isCorrect =
+    const isLoginCorrect =
       formData.get('username') === CREDENTIALS.username &&
       formData.get('current-password') === CREDENTIALS.password;
-    console.log({ isCorrect });
-    if (isCorrect) {
-      setLoggedIn(true);
-    }
+    console.log({ isCorrect: isLoginCorrect });
+    setLoggedIn(isLoginCorrect);
     e.preventDefault();
   }
+
   return (
     <form
       className="flex flex-col w-full h-full items-center font-body tracking-wider font-semibold pt-7 gap-y-4"
@@ -33,8 +38,11 @@ export default function Login({
           type="text"
           name="username"
           id="username"
-          className="border-2 border-linen rounded-lg w-full px-2 py-1 mt-1 shadow-sm font-normal"
+          className={`border-2 border-linen rounded-lg w-full px-2 py-1 mt-1 shadow-sm font-normal ${
+            loggedIn === false && 'animate__animated animate__shakeX'
+          }`}
           defaultValue={`Username`}
+          onChange={() => setLoggedIn(null)}
         />
       </div>
       <div className="w-2/3 max-w-sm">
@@ -46,8 +54,11 @@ export default function Login({
           name="current-password"
           id="current-password"
           autoComplete="current-password"
-          className="border-2 border-linen rounded-lg w-full px-2 py-1 mt-1 shadow-sm font-normal"
+          className={`border-2 border-linen rounded-lg w-full px-2 py-1 mt-1 shadow-sm font-normal  ${
+            loggedIn === false && 'animate__animated animate__shakeX'
+          }`}
           defaultValue={`Password`}
+          onChange={() => setLoggedIn(null)}
         />
       </div>
       <button
@@ -56,6 +67,14 @@ export default function Login({
       >
         Log in
       </button>
+      {loggedIn === false && (
+        <div className="text-sm font-normal text-[#6a3232] drop-shadow-sm flex flex-col items-center gap-1">
+          <IoWarningOutline className="text-lg" />
+          <span className="text-center">
+            You have entered an invalid username or password.
+          </span>
+        </div>
+      )}
     </form>
   );
 }
