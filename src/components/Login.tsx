@@ -1,9 +1,7 @@
 import 'animate.css';
-import { useEffect } from 'react';
-import { flushSync } from 'react-dom';
 import { IoWarningOutline } from 'react-icons/io5';
 
-const CREDENTIALS = {
+export const CREDENTIALS = {
   username: 'Username',
   password: 'Password',
 };
@@ -15,13 +13,18 @@ type LoginProps = {
 
 export default function Login({ loggedIn, setLoggedIn }: LoginProps) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    if (
+      !formData.get('username')?.length ||
+      !formData.get('current-password')?.length
+    ) {
+      return;
+    }
     const isLoginCorrect =
       formData.get('username') === CREDENTIALS.username &&
       formData.get('current-password') === CREDENTIALS.password;
-    console.log({ isCorrect: isLoginCorrect });
     setLoggedIn(isLoginCorrect);
-    e.preventDefault();
   }
 
   return (

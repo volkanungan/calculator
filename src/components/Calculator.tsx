@@ -17,7 +17,6 @@ export default function Calculator() {
         message = String(error);
       }
       setError(message);
-      console.log(error);
     }
   }, [input]);
 
@@ -41,7 +40,10 @@ export default function Calculator() {
       />
       <div className="text-center">
         <h2 className="uppercase">Result</h2>
-        <div className="bg-[white] p-3 rounded-lg text-3xl font-bold border-4 border-linen select-all font-numbers min-w-[100px] min-h-[70px] flex items-center justify-center shadow-sm">
+        <div
+          className="bg-[white] p-3 rounded-lg text-3xl font-bold border-4 border-linen select-all font-numbers min-w-[100px] min-h-[70px] flex items-center justify-center shadow-sm"
+          data-testid="result"
+        >
           {error ? (
             <GiBrokenPottery className="rotate-12 text-charcoal" />
           ) : (
