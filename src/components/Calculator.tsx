@@ -22,8 +22,8 @@ export default function Calculator() {
 
   return (
     <div className="flex flex-col w-full h-full items-center font-body tracking-wider pt-7 gap-4">
-      <h1 className="text-charcoal drop-shadow-lg normal-case font-semibold">
-        Calculator
+      <h1 className="text-charcoal drop-shadow-lg normal-case font-semibold text-center">
+        Reverse Polish Notation Calculator
       </h1>
       <input
         type="text"
@@ -41,19 +41,27 @@ export default function Calculator() {
       <div className="text-center">
         <h2 className="uppercase">Result</h2>
         <div
-          className="bg-[white] p-3 rounded-lg text-3xl font-bold border-4 border-linen select-all font-numbers min-w-[100px] min-h-[70px] flex items-center justify-center shadow-sm"
+          className="bg-[white] ml-auto mr-auto overflow-hidden rounded-lg text-3xl font-bold border-4 border-linen select-all font-numbers min-w-[100px] min-h-[70px] flex items-center justify-center shadow-sm"
           data-testid="result"
         >
           {error ? (
             <GiBrokenPottery className="rotate-12 text-charcoal" />
           ) : (
-            result
+            <span
+              className={`p-4 ${
+                result?.toString().length &&
+                result.toString().length > 15 &&
+                'text-lg sm:text-3xl'
+              }`}
+            >
+              {result}
+            </span>
           )}
         </div>
       </div>
       {error && (
         <div className="text-sm font-normal text-[#6a3232] drop-shadow-sm flex flex-col items-center gap-1">
-          <span className="text-center">{error}</span>
+          {error}
         </div>
       )}
     </div>

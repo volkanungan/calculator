@@ -44,7 +44,6 @@ export default function Login({ loggedIn, setLoggedIn }: LoginProps) {
           className={`border-2 border-linen rounded-lg w-full px-2 py-1 mt-1 shadow-sm font-normal ${
             loggedIn === false && 'animate__animated animate__shakeX'
           }`}
-          defaultValue={`Username`}
           onChange={() => setLoggedIn(null)}
         />
       </div>
@@ -60,7 +59,6 @@ export default function Login({ loggedIn, setLoggedIn }: LoginProps) {
           className={`border-2 border-linen rounded-lg w-full px-2 py-1 mt-1 shadow-sm font-normal  ${
             loggedIn === false && 'animate__animated animate__shakeX'
           }`}
-          defaultValue={`Password`}
           onChange={() => setLoggedIn(null)}
         />
       </div>
