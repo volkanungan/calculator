@@ -22,7 +22,7 @@ export default function Calculator() {
   }, [input]);
 
   return (
-    <div className="flex flex-col w-full h-full items-center font-body tracking-wider pt-7 gap-4">
+    <div className="flex flex-col w-full h-full items-center font-body tracking-wider py-7 gap-4">
       <h1 className="text-charcoal drop-shadow-lg normal-case font-semibold text-center">
         Reverse Polish Notation Calculator
       </h1>

@@ -29,7 +29,7 @@ export default function Login({ loggedIn, setLoggedIn }: LoginProps) {
 
   return (
     <form
-      className="flex flex-col w-full h-full items-center font-body tracking-wider font-semibold pt-7 gap-y-4"
+      className="flex flex-col w-full h-full items-center font-body tracking-wider font-semibold py-7 gap-y-4"
       onSubmit={handleSubmit}
     >
       <h1 className="text-charcoal drop-shadow-lg">Login to the calculator</h1>
