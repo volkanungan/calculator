@@ -6,6 +6,7 @@ export default function Calculator() {
   const [input, setInput] = useState<string>('');
   const [result, setResult] = useState<number | null>();
   const [error, setError] = useState<string | null>();
+
   useEffect(() => {
     try {
       setResult(calc(input.trim()));
@@ -48,10 +49,10 @@ export default function Calculator() {
             <GiBrokenPottery className="rotate-12 text-charcoal" />
           ) : (
             <span
-              className={`p-4 ${
+              className={`p-4 sm:text-3xl${
                 result?.toString().length &&
                 result.toString().length > 15 &&
-                'text-lg sm:text-3xl'
+                'text-lg'
               }`}
             >
               {result}

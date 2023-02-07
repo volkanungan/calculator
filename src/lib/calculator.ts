@@ -33,7 +33,7 @@ function validateResult(stack: number[]) {
 
 function doOperation(stack: number[], operator: Operator) {
   const [second, first] = [Number(stack.pop()), Number(stack.pop())];
-  if (!first || !second) {
+  if (first == null || second == null) {
     throw new Error(
       `Invalid input: Operands not given before operator ${operator}`
     );
